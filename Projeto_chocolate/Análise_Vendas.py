@@ -344,24 +344,24 @@ df_vendas2= df_vendas2.drop(['mercado'], axis=1)
 df_vendas2.head(5)
 
 
-# In[37]:
-
-
-# Renomendo as colunas:
-df_vendas2.columns = df_vendas2.columns.str.replace('Vendas','Participacao').str.strip().str.title()
-
-
 # - Análise descritiva das Marcas:
 #  
 
-# In[38]:
+# In[34]:
 
 
 # Resumo estatístico da participação de mercado  
 df_vendas2.describe()
 
 
-# In[39]:
+# In[35]:
+
+
+# Renomendo as colunas:
+df_vendas2.columns = df_vendas2.columns.str.replace('Vendas','Participacao').str.strip().str.title()
+
+
+# In[36]:
 
 
 # Boxplot da participação de mercado:
@@ -379,7 +379,7 @@ fig.show()
 
 # A Marca Whittaker apresenta maior Variabilidade:
 
-# In[40]:
+# In[37]:
 
 
 ## Histograma da participação da Whittaker:
@@ -396,7 +396,7 @@ fig.show()
 # ### Para Obter maior detalhes Vamos dividir a base sem 2 anos para entedermos as mudanças de participação das marcas
 # 
 
-# In[41]:
+# In[38]:
 
 
 # A função personalizada
@@ -405,14 +405,14 @@ def ano(Coluna):
     return x
 
 
-# In[42]:
+# In[39]:
 
 
 # Adicionando a coluna de Ano:
 df_base['ano']= ano(df_base.index)
 
 
-# In[43]:
+# In[40]:
 
 
 df_vendas2['ano']= ano(df_vendas2.index)
@@ -420,26 +420,26 @@ df_vendas2['ano']= ano(df_vendas2.index)
 
 # - Participação de mercado das marcas por ano
 
-# In[44]:
+# In[41]:
 
 
 # Resumo do 1º ano:
 df_vendas2[df_vendas2['ano']=='1º ano'].describe()
 
 
-# In[45]:
+# In[42]:
 
 
 df_vendas2[df_vendas2['ano']=='2º ano'].describe()
 
 
-# In[46]:
+# In[43]:
 
 
 df_vendas2.columns
 
 
-# In[63]:
+# In[44]:
 
 
 df = df_vendas2.groupby('ano').agg(lambda x: np.mean(x)*100).T
@@ -451,7 +451,7 @@ fig.update_layout(title={'text':'Percentual Médio de Participação de Mercado'
 fig.show()
 
 
-# In[62]:
+# In[45]:
 
 
 
@@ -467,13 +467,13 @@ fig.show()
 
 # - Analizar a marca whittaker e a Caddury
 
-# In[65]:
+# In[46]:
 
 
 df_base.columns
 
 
-# In[71]:
+# In[47]:
 
 
 # Gráfico de disperção da Marca Whitteker
@@ -483,7 +483,7 @@ fig.update_layout(title={'text':'Vendas x Preço da Whittaker','y':0.95,'x':0.5}
 fig.show()
 
 
-# In[75]:
+# In[48]:
 
 
 # Gráfico de disperção da Marca Whitteker
@@ -495,10 +495,10 @@ fig.update_layout(title={'text':'Vendas x Preço da cadbury','y':0.95,'x':0.5})
 fig.show()
 
 
-# - Aplicando o logaritimo natual:
+# - Aplicando o logaritimo natural:
 # 
 
-# In[77]:
+# In[49]:
 
 
 # Gráfico de disperção da Marca Whitteker
@@ -509,4 +509,10 @@ fig= px.scatter(df, x='preco_atual_whittaker', y='vendas_whittaker',
                log_x=True, log_y=False)
 fig.update_layout(title={'text':'Vendas x Preço da Whittaker','y':0.95,'x':0.5})
 fig.show()
+
+
+# In[ ]:
+
+
+
 
